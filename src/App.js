@@ -196,6 +196,7 @@ function App() {
               backgroundColor: "var(--accent)",
               padding: 24,
               borderRadius: 24,
+              height: "fit-content",
             }}
           >
             <StyledImg alt={"Never Give Up NFT"} src={"/config/images/ngu.jpg"} />
