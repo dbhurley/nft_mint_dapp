@@ -68,6 +68,13 @@ export const StyledLogo = styled.img`
   transition: height 0.5s;
 `;
 
+export const StyledImg = styled.img`
+  border: 3px solid #000;
+  padding: 4px;
+  max-width: 40%;
+  transition: width 0.5s;
+`;
+
 export const StyledLink = styled.a`
   color: var(--secondary);
   text-decoration: none;
@@ -78,7 +85,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [feedback, setFeedback] = useState(`Click Mint to mint your NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -124,7 +131,7 @@ function App() {
       .then((receipt) => {
         console.log(receipt);
         setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it.`
+          `Your commitment to ${CONFIG.NFT_NAME} is ready! Visit Opensea to view it.`
         );
         setClaimingNft(false);
         dispatch(fetchData(blockchain.account));
@@ -180,10 +187,7 @@ function App() {
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
         image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
       >
-        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
-        <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }}>
-          <s.SpacerLarge />
           <s.Container
             flex={2}
             jc={"center"}
@@ -194,6 +198,7 @@ function App() {
               borderRadius: 24,
             }}
           >
+            <StyledImg alt={"Never Give Up NFT"} src={"/config/images/ngu.jpg"} />
             <s.TextTitle
               style={{
                 textAlign: "center",
@@ -237,27 +242,20 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 Never Give Up NFT costs {CONFIG.DISPLAY_COST}{" "}
-                  {CONFIG.NETWORK.SYMBOL}.
+                  1 Never Give Up NFT costs only {CONFIG.DISPLAY_COST}{" "}
+                  {CONFIG.NETWORK.SYMBOL}
                 </s.TextTitle>
                 <s.SpacerXSmall />
                 <s.TextDescription
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  Excluding gas fees.
+                  A pittance to pay to mint your commitment to <strong>never give up</strong> <br />
+                  and endure the Crypto Winter of 2022.
                 </s.TextDescription>
                 <s.SpacerSmall />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
                   <s.Container ai={"center"} jc={"center"}>
-                    <s.TextDescription
-                      style={{
-                        textAlign: "center",
-                        color: "var(--accent-text)",
-                      }}
-                    >
-                      Connect to the {CONFIG.NETWORK.NAME} network
-                    </s.TextDescription>
                     <s.SpacerSmall />
                     <StyledButton
                       onClick={(e) => {
@@ -345,7 +343,6 @@ function App() {
           </s.Container>
           <s.SpacerLarge />
         </ResponsiveWrapper>
-        <s.SpacerMedium />
         <s.Container jc={"center"} ai={"center"} style={{ width: "70%" }}>
           <s.TextDescription
             style={{
