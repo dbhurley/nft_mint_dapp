@@ -351,7 +351,7 @@ function App() {
             }}
           >
             Always make sure you are connected to the right network (
-            {CONFIG.NETWORK.NAME} Mainnet) and the correct address.
+            {CONFIG.NETWORK.NAME} Mainnet) and the correct contract.
           </s.TextDescription>
         </s.Container>
       </s.Container>
